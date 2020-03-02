@@ -3,6 +3,7 @@ import styles from "./App.module.scss";
 
 function App() {
   const [todoName, setTodoName] = useState("");
+  const [todos, setTodos] = useState([]);
   /**
    * -Create a todo name(just a string )
    * -Add the todo(object)---props: name, status, created_date, _id to a list of todos onSubmit
@@ -15,24 +16,24 @@ function App() {
     } = event;
     setTodoName(todoName);
   }
-
-  const createTodo = event => {
+  function addTodo(event) {
     event.preventDefault();
     const todo = {
+      _id: Math.random().toString(),
       name: todoName,
       status: ["pending"],
-      created_date: Date.now(),
-      _id: ""
+      created_date: Date.now()
     };
+    setTodos(prevTodos => {
+      return [todo, ...prevTodos];
+    });
     setTodoName("");
-    setTodos(prevTodos => [todo, ...prevTodos]);
-  };
+  }
 
-  const [todos, setTodos] = useState([]);
   return (
     <div className={styles.todoContainer}>
       <h1>todos</h1>
-      <form className={styles.formToSubmit} onSubmit={createTodo}>
+      <form className={styles.formToSubmit} onSubmit={addTodo}>
         <input
           type="text"
           placeholder="What needs to be done?"
@@ -42,9 +43,9 @@ function App() {
         />
       </form>
       <ul>
-        {todos.map(todo => (
-          <li>{todo.name}</li>
-        ))}
+        {todos.map(todo => {
+          return <li>{todo.name}</li>;
+        })}
       </ul>
     </div>
   );
