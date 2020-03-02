@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./App.module.scss";
+import checkboxIcon from "images/checkbox-icon-png-59.png";
 
 function App() {
   const [todoName, setTodoName] = useState("");
@@ -44,7 +45,15 @@ function App() {
       </form>
       <ul>
         {todos.map(todo => {
-          return <li>{todo.name}</li>;
+          return (
+            <li>
+              <input type="checkbox" id={todo._id} />
+              <label htmlFor={todo._id}>
+                <img src={checkboxIcon} alt="checkbox-icon" className={styles.tickBoxImg}/>
+              </label>
+              {todo.name}
+            </li>
+          );
         })}
       </ul>
     </div>
