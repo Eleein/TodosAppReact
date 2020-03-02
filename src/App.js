@@ -31,6 +31,19 @@ function App() {
     setTodoName("");
   }
 
+  function changeStatus(todoToUpdate) {
+    todoToUpdate.status =
+      todoToUpdate.status[0] === "pending" ? ["checked"] : ["pending"];
+
+    const newTodos = todos.reduce((newTodoList, todo) => {
+      newTodoList.push(todoToUpdate.id === todo.id ? todoToUpdate : todo);
+      return newTodoList;
+    }, []);
+    setTodos(newTodos)
+  }
+
+
+
   return (
     <div className={styles.todoContainer}>
       <h1>todos</h1>
@@ -47,9 +60,17 @@ function App() {
         {todos.map(todo => {
           return (
             <li>
-              <input type="checkbox" id={todo._id} />
+              <input
+                type="checkbox"
+                id={todo._id}
+                onChange={() => changeStatus(todo)}
+              />
               <label htmlFor={todo._id}>
-                <img src={checkboxIcon} alt="checkbox-icon" className={styles.tickBoxImg}/>
+                <img
+                  src={checkboxIcon}
+                  alt="checkbox-icon"
+                  className={styles.tickBoxImg}
+                />
               </label>
               {todo.name}
             </li>
