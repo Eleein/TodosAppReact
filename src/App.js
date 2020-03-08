@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./App.module.scss";
 import checkboxIcon from "images/checkbox-icon-png-59.png";
-
+import uncheckedBox from "images/unchecked-checkbox-icon.png";
 function App() {
   const [todoName, setTodoName] = useState("");
   const [todos, setTodos] = useState([]);
   /**
    * -Create a todo name(just a string )
-   * -Add the todo(object)---props: name, status, created_date, _id to a list of todos onSubmit
+   * -Add the todo(object)---props: name, status, created_date, _id to    a list of todos onSubmit
    * -Create a list that maps over the list of todos and displays each one
    * */
   function saveTodoName(event) {
@@ -68,6 +68,7 @@ function App() {
       </form>
       <ul>
         {todos.map(todo => {
+          const isChecked = todo.status[0] === 'completed';
           return (
             <li>
               <input
@@ -78,14 +79,10 @@ function App() {
                   changeStatusAndUpdateTodos(todo);
 
                 }}
-                checked={ todo.status[0] === 'completed'}
+                checked={isChecked}
               />
               <label htmlFor={todo._id}>
-                <img
-                  src={checkboxIcon}
-                  alt="checkbox-icon"
-                  className={styles.tickBoxImg}
-                />
+                <img src={isChecked ? checkboxIcon : uncheckedBox} alt="checkbox-icon" className={styles.tickBoxImg}/>
               </label>
               {todo.name}
             </li>
