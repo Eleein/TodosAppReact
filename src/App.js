@@ -15,20 +15,23 @@ function App() {
     const {
       target: { value: todoName }
     } = event;
-    setTodoName(todoName);
+
+      setTodoName(todoName)
+    ;
   }
   function addTodo(event) {
     event.preventDefault();
-    const todo = {
+    if(todoName) { const todo = {
       _id: Math.random().toString(),
       name: todoName,
       status: ["pending"],
       created_date: Date.now()
     };
+
     setTodos(prevTodos => {
       return [todo, ...prevTodos];
     });
-    setTodoName("");
+    setTodoName("")};
   }
 
   function updateTodos(todoToUpdate) {
