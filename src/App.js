@@ -31,22 +31,32 @@ function App() {
     setTodoName("");
   }
 
-  function changeStatus(todoToUpdate) {
-    todoToUpdate.status =
-      todoToUpdate.status[0] === "pending" ? ["checked"] : ["pending"];
-
+  function updateTodos(todoToUpdate) {
     const newTodos = todos.reduce((newTodoList, todo) => {
-      newTodoList.push(todoToUpdate.id === todo.id ? todoToUpdate : todo);
+      newTodoList.push(todoToUpdate._id === todo._id ? todoToUpdate : todo);
       return newTodoList;
     }, []);
-    setTodos(newTodos)
+    setTodos(newTodos);
   }
 
+  function changeStatusAndUpdateTodos(todoToUpdate) {
+    todoToUpdate.status =
+      todoToUpdate.status[0] === "pending" ? ["completed"] : ["pending"];
+    updateTodos(todoToUpdate);
+  }
 
+  function markAllTodosDone() {
+    const markedTodos = todos.map(todo => {
+      todo.status[0] = "completed";
+      return todo;
+    });
+    setTodos(markedTodos);
+  }
 
   return (
     <div className={styles.todoContainer}>
       <h1>todos</h1>
+      <button onClick={markAllTodosDone}>Mark All Done</button>
       <form className={styles.formToSubmit} onSubmit={addTodo}>
         <input
           type="text"
@@ -63,7 +73,12 @@ function App() {
               <input
                 type="checkbox"
                 id={todo._id}
-                onChange={() => changeStatus(todo)}
+                onChange={() => {
+
+                  changeStatusAndUpdateTodos(todo);
+
+                }}
+                checked={ todo.status[0] === 'completed'}
               />
               <label htmlFor={todo._id}>
                 <img
