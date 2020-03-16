@@ -1,3 +1,10 @@
+.todoHeader{
+  font-size: 100px;
+  color:rgba(175, 47, 47, 0.15);
+  font-weight: 100;
+  margin: 0 auto;
+}
+
 .todoContainer {
   display: flex;
   flex-direction: column;
@@ -14,4 +21,24 @@
 .tickBoxImg{
   width: 20px;
   height: 20px;
+}
+.listItemCheckBox{
+  opacity: 0;
+}
+.todoListItem{
+  list-style: none;
+  font-size: 24px;
+}
+
+.checkedTodo{
+  text-decoration: line-through;
+}
+
+.downArrow{
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }

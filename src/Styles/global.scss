@@ -1,1 +1,10 @@
 @import "theme";
+
+* {
+  font-family: $todoFontFamily;
+  font-size: $todoFontSize;
+}
+
+input::placeholder {
+  font-style: italic;
+}
