@@ -90,60 +90,82 @@ function App() {
   }
 
   function deleteTodo(todoToDelete) {
-   fetch(`http://localhost:3030/tasks/${todoToDelete._id}`, {
-     method: "DELETE",
-     headers: {
-       "Content-Type": "application/JSON"
-     }
-   }).then(() => setTodos(todos.filter( todo => {
-     return todoToDelete._id !== todo._id
-   }))).catch(error => console.log(error))
+    fetch(`http://localhost:3030/tasks/${todoToDelete._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/JSON"
+      }
+    })
+      .then(() =>
+        setTodos(
+          todos.filter(todo => {
+            return todoToDelete._id !== todo._id;
+          })
+        )
+      )
+      .catch(error => console.log(error));
   }
 
   return (
     <div className={styles.todoContainer}>
       <h1 className={styles.todoHeader}>todos</h1>
-      
-      <form className={styles.formToSubmit} onSubmit={addTodo}>
-        <button onClick={markAllTodosDone}><i className={styles.downArrow}></i></button>
-        <input
-          type="text"
-          placeholder="What needs to be done?"
-          className={styles.todoInput}
-          value={todoName}
-          onChange={saveTodoName}
-        />
-      </form>
-      <ul>
-        {todos.map(todo => {
-          const isChecked = todo.status[0] === "completed";
-          return (
-            <li className={styles.todoListItem}>
-              <input
-                className={styles.listItemCheckBox}
-                type="checkbox"
-                id={todo._id}
-                onChange={() => {
-                  changeStatusAndUpdateTodos(todo);
-                }}
-                checked={isChecked}
-              />
-              <label htmlFor={todo._id}>
-                <img
-                  src={isChecked ? checkboxIcon : uncheckedBox}
-                  alt="checkbox-icon"
-                  className={styles.tickBoxImg}
-                />
-              </label>
-              <span className={isChecked ? styles.checkedTodo : ''}>{todo.name}</span>
-              <button type="button" onClick={()=>{
+      <div className={styles.todoAndListContainer}>
 
-                deleteTodo(todo)
-              }}>X</button>
-            </li>
-          );
-        })}
-      </ul>
+        <form className={styles.formToSubmit} onSubmit={addTodo}>
+          <div className={styles.buttonContainer}>
+            <button type="button" className={styles.allDoneButton} onClick={markAllTodosDone}>
+              <i className={styles.downArrow}></i>
+            </button>
+          </div>
+          <input
+              type="text"
+              placeholder="What needs to be done?"
+              className={styles.todoInput}
+              value={todoName}
+              onChange={saveTodoName}
+          />
+        </form>
+        <ul>
+          {todos.map(todo => {
+            const isChecked = todo.status[0] === "completed";
+            return (
+                <li className={styles.todoListItem}>
+                  <div>
+                    <input
+                        className={styles.listItemCheckBox}
+                        type="checkbox"
+                        id={todo._id}
+                        onChange={() => {
+                          changeStatusAndUpdateTodos(todo);
+                        }}
+                        checked={isChecked}
+                    />
+                    <label htmlFor={todo._id}>
+                      <img
+                          src={isChecked ? checkboxIcon : uncheckedBox}
+                          alt="checkbox-icon"
+                          className={`${styles.tickBoxImg} ${isChecked ? '' : styles.uncheckedImage}`}
+                      />
+                    </label>
+                    <span className={isChecked ? styles.checkedTodo : styles.uncheckedTodo}>
+                  {todo.name}
+                </span>
+                  </div>
+                  <div>
+                    <button className={styles.closeButton}
+                        type="button"
+                        onClick={() => {
+                          deleteTodo(todo);
+                        }}
+                    >
+                      X
+                    </button>
+                  </div>
+                </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

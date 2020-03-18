@@ -1,6 +1,6 @@
-.todoHeader{
+.todoHeader {
   font-size: 100px;
-  color:rgba(175, 47, 47, 0.15);
+  color: rgba(175, 47, 47, 0.15);
   font-weight: 100;
   margin: 0 auto;
 }
@@ -12,33 +12,80 @@
   height: 100vh;
 }
 
-.formToSubmit .todoInput {
-  width: 550px;
-  height: 65px;
-  border: 1px solid black;
+.todoAndListContainer {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
-.tickBoxImg{
-  width: 20px;
-  height: 20px;
+.formToSubmit .todoInput {
+  width: 490px;
+  height: 65px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-left: 60px;
 }
-.listItemCheckBox{
+
+.tickBoxImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.uncheckedImage{
+  filter: brightness(0) invert(1);
+}
+.listItemCheckBox {
   opacity: 0;
 }
-.todoListItem{
+.todoListItem {
   list-style: none;
   font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.checkedTodo{
+.uncheckedTodo {
+  padding-left: 20px;
+}
+
+.checkedTodo {
   text-decoration: line-through;
+  padding-left: 20px;
 }
 
-.downArrow{
+.closeButton {
+  border: none;
+  font-size: 15px;
+  padding-right: 25px;
+  background-color: #f5f5f5;
+  color: rgba(175, 47, 47, 0.15);
+}
+
+.closeButton:hover {
+  font-weight: bold;
+  border: none;
+  font-size: 15px;
+  color: darkred;
+  padding-right: 25px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.downArrow {
   border: solid black;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.buttonContainer {
+  position: relative;
+}
+
+.allDoneButton {
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  border: none;
+  background-color: white;
 }
