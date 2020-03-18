@@ -2,6 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+```javascript
+ const thisIsATest = 2;
+ console.log(thisIsATest);
+```
+
 In the project directory, you can run:
 
 ### `npm start`
