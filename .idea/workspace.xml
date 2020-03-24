@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ac8da7c-c700-4fe7-9d27-b1c804b5888b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/App/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/App/App.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/App/App.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/global.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +21,7 @@
       <list>
         <option value="CSS File" />
         <option value="Sass File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -52,6 +57,11 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dania\JStormProjects\untitled\src\components\CheckBox" />
+      <recent name="C:\Users\Dania\JStormProjects\untitled\src\pages\App" />
+      <recent name="C:\Users\Dania\JStormProjects\untitled\src\pages" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -98,7 +108,9 @@
       <workItem from="1583923610022" duration="4558000" />
       <workItem from="1584342202695" duration="16645000" />
       <workItem from="1584428983211" duration="6634000" />
-      <workItem from="1584517696119" duration="5957000" />
+      <workItem from="1584517696119" duration="15898000" />
+      <workItem from="1584946891539" duration="3557000" />
+      <workItem from="1585063527557" duration="236000" />
     </task>
     <servers />
   </component>
@@ -124,17 +136,17 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="463" y="138" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1583690902095" />
-    <state x="148" y="38" key="SettingsEditor" timestamp="1584522962869">
+    <state x="148" y="38" key="SettingsEditor" timestamp="1584621276654">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="148" y="38" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1584522962869" />
+    <state x="148" y="38" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1584621276654" />
     <state x="92" y="92" width="1182" height="584" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584376023522">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="92" y="92" width="1182" height="584" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.768@0.0.1366.768" timestamp="1584376023522" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583685945536">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1584632569075">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1583685945536" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1584632569075" />
   </component>
 </project>

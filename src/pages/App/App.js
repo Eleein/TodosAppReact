@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styles from "./App.module.scss";
+import styles from "pages/App/App.module.scss";
 import checkboxIcon from "images/checkbox-icon-png-59.png";
 import uncheckedBox from "images/unchecked-checkbox-icon.png";
+import { TodoInput } from "pages/App/TodoInput/TodoInput";
+import { CheckBox } from "components/CheckBox/CheckBox";
 
 function App() {
   const [todoName, setTodoName] = useState("");
@@ -110,58 +112,35 @@ function App() {
     <div className={styles.todoContainer}>
       <h1 className={styles.todoHeader}>todos</h1>
       <div className={styles.todoAndListContainer}>
-
-        <form className={styles.formToSubmit} onSubmit={addTodo}>
-          <div className={styles.buttonContainer}>
-            <button type="button" className={styles.allDoneButton} onClick={markAllTodosDone}>
-              <i className={styles.downArrow}></i>
-            </button>
-          </div>
-          <input
-              type="text"
-              placeholder="What needs to be done?"
-              className={styles.todoInput}
-              value={todoName}
-              onChange={saveTodoName}
-          />
-        </form>
+        <TodoInput
+          todoName={todoName}
+          saveTodoName={saveTodoName}
+          markAllTodosDone={markAllTodosDone}
+          addTodo={addTodo}
+        />
         <ul>
           {todos.map(todo => {
             const isChecked = todo.status[0] === "completed";
             return (
-                <li className={styles.todoListItem}>
-                  <div>
-                    <input
-                        className={styles.listItemCheckBox}
-                        type="checkbox"
-                        id={todo._id}
-                        onChange={() => {
-                          changeStatusAndUpdateTodos(todo);
-                        }}
-                        checked={isChecked}
-                    />
-                    <label htmlFor={todo._id}>
-                      <img
-                          src={isChecked ? checkboxIcon : uncheckedBox}
-                          alt="checkbox-icon"
-                          className={`${styles.tickBoxImg} ${isChecked ? '' : styles.uncheckedImage}`}
-                      />
-                    </label>
-                    <span className={isChecked ? styles.checkedTodo : styles.uncheckedTodo}>
-                  {todo.name}
-                </span>
-                  </div>
-                  <div>
-                    <button className={styles.closeButton}
-                        type="button"
-                        onClick={() => {
-                          deleteTodo(todo);
-                        }}
-                    >
-                      X
-                    </button>
-                  </div>
-                </li>
+              <li className={styles.todoListItem}>
+                <CheckBox
+                  onChange={changeStatusAndUpdateTodos}
+                  isChecked={isChecked}
+                  checkBoxItem={todo}
+                />
+
+                <div>
+                  <button
+                    className={styles.closeButton}
+                    type="button"
+                    onClick={() => {
+                      deleteTodo(todo);
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+              </li>
             );
           })}
         </ul>
