@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ac8da7c-c700-4fe7-9d27-b1c804b5888b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/App/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/App/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/API/Post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +54,7 @@
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dania\JStormProjects\untitled\src\API" />
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\pages\App" />
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\components\CheckBox" />
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\pages" />
@@ -122,6 +124,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="413" y="186" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585158373744">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="413" y="186" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1585158373744" />
     <state x="413" y="130" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582057657038">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

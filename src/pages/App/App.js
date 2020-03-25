@@ -2,25 +2,25 @@ import React, { useEffect, useState } from "react";
 import styles from "pages/App/App.module.scss";
 import { TodoInput } from "pages/App/TodoInput/TodoInput";
 import { CheckBox } from "components/CheckBox/CheckBox";
-import { saveTodo } from "./Post";
+import { saveTodo } from "API/Post";
+import {DeleteBtn} from "components/DeleteBtn/DeleteBtn";
 
 function App() {
   const [todoName, setTodoName] = useState("");
   const [todos, setTodos] = useState([]);
 
-
   useEffect(() => {
     const getTodos = async () => {
-      try {const response = await fetch("http://localhost:3030/tasks");
-      if (response.ok) {
-        const savedTodos = await response.json();
-        setTodos(savedTodos);
+      try {
+        const response = await fetch("http://localhost:3030/tasks");
+        if (response.ok) {
+          const savedTodos = await response.json();
+          setTodos(savedTodos);
+        }
+        throw new Error("Request failed!");
+      } catch (error) {
+        console.log(error);
       }
-      throw new Error("Request failed!")}
-      catch(error){
-        console.log(error)
-      }
-      ;
     };
     getTodos();
   }, []);
@@ -127,18 +127,7 @@ function App() {
                   isChecked={isChecked}
                   checkBoxItem={todo}
                 />
-
-                <div>
-                  <button
-                    className={styles.closeButton}
-                    type="button"
-                    onClick={() => {
-                      deleteTodo(todo);
-                    }}
-                  >
-                    X
-                  </button>
-                </div>
+             <DeleteBtn itemToDelete={todo} onClick={deleteTodo}/>
               </li>
             );
           })}
