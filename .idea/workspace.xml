@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ac8da7c-c700-4fe7-9d27-b1c804b5888b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/App/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/App/App.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/App/App.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +53,8 @@
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Dania\JStormProjects\untitled\src\components\CheckBox" />
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\pages\App" />
+      <recent name="C:\Users\Dania\JStormProjects\untitled\src\components\CheckBox" />
       <recent name="C:\Users\Dania\JStormProjects\untitled\src\pages" />
     </key>
   </component>

@@ -4,14 +4,26 @@ import checkboxIcon from "images/checkbox-icon-png-59.png";
 import uncheckedBox from "images/unchecked-checkbox-icon.png";
 import { TodoInput } from "pages/App/TodoInput/TodoInput";
 import { CheckBox } from "components/CheckBox/CheckBox";
+import { postTodo } from "./Post";
 
 function App() {
   const [todoName, setTodoName] = useState("");
   const [todos, setTodos] = useState([]);
 
+  // SHOW THIS TO JOSEPH!!!!!!!!
   useEffect(() => {
     fetch("http://localhost:3030/tasks")
-      .then(response => response.json())
+      .then(
+        response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Request failed!");
+        },
+        networkError => {
+          console.log(networkError.message);
+        }
+      )
       .then(savedTodos => setTodos(savedTodos))
       .catch(error => console.log(error));
   }, []);
@@ -38,25 +50,17 @@ function App() {
         created_date: Date.now()
       };
 
-      fetch("http://localhost:3030/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/JSON"
-        },
-        body: JSON.stringify(todo)
-      })
-        .then(response => {
-          return response.json();
-        })
-        .then(todo => {
-          setTodos(prevTodos => {
-            return [todo, ...prevTodos];
-          });
-          setTodoName("");
-        })
-        .catch(error => {
-          console.log(error);
+
+      postTodo(todo).then(todo => {
+        setTodos(prevTodos => {
+          return [todo, ...prevTodos];
         });
+      })
+          .catch(error => {
+        console.log(error);
+      });
+      setTodoName('')
+      ;
     }
   }
 
