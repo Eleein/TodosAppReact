@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
 import styles from "pages/App/App.module.scss";
-import checkboxIcon from "images/checkbox-icon-png-59.png";
-import uncheckedBox from "images/unchecked-checkbox-icon.png";
 import { TodoInput } from "pages/App/TodoInput/TodoInput";
 import { CheckBox } from "components/CheckBox/CheckBox";
-import { postTodo } from "./Post";
+import { saveTodo } from "./Post";
 
 function App() {
   const [todoName, setTodoName] = useState("");
   const [todos, setTodos] = useState([]);
 
-  // SHOW THIS TO JOSEPH!!!!!!!!
-  useEffect(() => {
-    fetch("http://localhost:3030/tasks")
-      .then(
-        response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Request failed!");
-        },
-        networkError => {
-          console.log(networkError.message);
-        }
-      )
-      .then(savedTodos => setTodos(savedTodos))
-      .catch(error => console.log(error));
-  }, []);
 
+  useEffect(() => {
+    const getTodos = async () => {
+      try {const response = await fetch("http://localhost:3030/tasks");
+      if (response.ok) {
+        const savedTodos = await response.json();
+        setTodos(savedTodos);
+      }
+      throw new Error("Request failed!")}
+      catch(error){
+        console.log(error)
+      }
+      ;
+    };
+    getTodos();
+  }, []);
   /**
    * -Create a todo name(just a string )
    * -Add the todo(object)---props: name, status, created_date, _id to    a list of todos onSubmit
@@ -50,17 +46,16 @@ function App() {
         created_date: Date.now()
       };
 
-
-      postTodo(todo).then(todo => {
-        setTodos(prevTodos => {
-          return [todo, ...prevTodos];
+      saveTodo(todo)
+        .then(todo => {
+          setTodos(prevTodos => {
+            return [todo, ...prevTodos];
+          });
+        })
+        .catch(error => {
+          console.log(error);
         });
-      })
-          .catch(error => {
-        console.log(error);
-      });
-      setTodoName('')
-      ;
+      setTodoName("");
     }
   }
 

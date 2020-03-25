@@ -1,6 +1,6 @@
 
 
-export async function postTodo(todo) {
+export async function saveTodo(todo) {
   const response = await fetch("http://localhost:3030/tasks", {
     method: "POST",
     headers: {
