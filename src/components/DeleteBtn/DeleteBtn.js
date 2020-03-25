@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "pages/App/App.module.scss";
+import styles from "./DeleteBtn.module.scss";
 
 export const DeleteBtn = ({itemToDelete, onClick}) => {
     return(
@@ -15,4 +15,4 @@ export const DeleteBtn = ({itemToDelete, onClick}) => {
             </button>
         </div>
     )
-}
+};
