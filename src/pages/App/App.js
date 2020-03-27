@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "pages/App/App.module.scss";
-import { TodoInput } from "pages/App/TodoInput/TodoInput";
-import { CheckBox } from "components/CheckBox/CheckBox";
-import { apiRequest, httpMethods } from "API/Post";
-import { DeleteBtn } from "components/DeleteBtn/DeleteBtn";
+import {TodoInput} from "pages/App/TodoInput/TodoInput";
+import {apiRequest, httpMethods} from "API/Post";
+import {TodoList} from "pages/App/TodoList/TodoList";
 
 function App() {
   const [todoName, setTodoName] = useState("");
@@ -120,21 +119,8 @@ function App() {
           markAllTodosDone={markAllTodosDone}
           addTodo={addTodo}
         />
-        <ul>
-          {todos.map(todo => {
-            const isChecked = todo.status[0] === "completed";
-            return (
-              <li className={styles.todoListItem}>
-                <CheckBox
-                  onChange={changeStatusAndUpdateTodos}
-                  isChecked={isChecked}
-                  checkBoxItem={todo}
-                />
-                <DeleteBtn itemToDelete={todo} onClick={deleteTodo} />
-              </li>
-            );
-          })}
-        </ul>
+        <TodoList todos={todos} update={changeStatusAndUpdateTodos} del={deleteTodo}/>
+
       </div>
     </div>
   );
