@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "pages/App/App.module.scss";
 import { TodoInput } from "pages/App/TodoInput/TodoInput";
 import { CheckBox } from "components/CheckBox/CheckBox";
-import { saveTodo } from "API/Post";
-import {DeleteBtn} from "components/DeleteBtn/DeleteBtn";
+import { apiRequest, httpMethods } from "API/Post";
+import { DeleteBtn } from "components/DeleteBtn/DeleteBtn";
 
 function App() {
   const [todoName, setTodoName] = useState("");
@@ -12,12 +12,11 @@ function App() {
   useEffect(() => {
     const getTodos = async () => {
       try {
-        const response = await fetch("http://localhost:3030/tasks");
-        if (response.ok) {
-          const savedTodos = await response.json();
-          setTodos(savedTodos);
-        }
-        throw new Error("Request failed!");
+        const todos = await apiRequest(
+          "http://localhost:3030/tasks",
+          httpMethods.get
+        );
+        setTodos(todos);
       } catch (error) {
         console.log(error);
       }
@@ -37,25 +36,28 @@ function App() {
 
     setTodoName(todoName);
   }
-  function addTodo(event) {
-    event.preventDefault();
-    if (todoName) {
-      const todo = {
-        name: todoName,
-        status: ["pending"],
-        created_date: Date.now()
-      };
+  async function addTodo(event) {
+    try {
+      event.preventDefault();
+      if (todoName) {
+        const todo = {
+          name: todoName,
+          status: ["pending"],
+          created_date: Date.now()
+        };
 
-      saveTodo(todo)
-        .then(todo => {
-          setTodos(prevTodos => {
-            return [todo, ...prevTodos];
-          });
-        })
-        .catch(error => {
-          console.log(error);
+        const addedTodo = await apiRequest(
+          "http://localhost:3030/tasks",
+          httpMethods.post,
+          todo
+        );
+        setTodos(prevTodos => {
+          return [addedTodo, ...prevTodos];
         });
-      setTodoName("");
+        setTodoName("");
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -67,19 +69,22 @@ function App() {
     setTodos(newTodos);
   }
 
-  function changeStatusAndUpdateTodos(todoToUpdate) {
-    todoToUpdate.status =
-      todoToUpdate.status[0] === "pending" ? ["completed"] : ["pending"];
+  async function changeStatusAndUpdateTodos(todoToUpdate) {
+    try {
+      todoToUpdate.status =
+        todoToUpdate.status[0] === "pending" ? ["completed"] : ["pending"];
 
-    fetch(`http://localhost:3030/tasks/${todoToUpdate._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/JSON"
-      },
-      body: JSON.stringify(todoToUpdate)
-    })
-      .then(() => updateTodos(todoToUpdate))
-      .catch(error => console.log(error));
+      const updatedTodo = await apiRequest(
+        `http://localhost:3030/tasks/${todoToUpdate._id}`,
+        httpMethods.put,
+        todoToUpdate
+      );
+      updateTodos(() => updatedTodo);
+    } catch (error) {
+      console.log(error);
+    }
+
+
   }
 
   function markAllTodosDone() {
@@ -90,21 +95,19 @@ function App() {
     setTodos(markedTodos);
   }
 
-  function deleteTodo(todoToDelete) {
-    fetch(`http://localhost:3030/tasks/${todoToDelete._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/JSON"
-      }
-    })
-      .then(() =>
-        setTodos(
-          todos.filter(todo => {
-            return todoToDelete._id !== todo._id;
-          })
-        )
-      )
-      .catch(error => console.log(error));
+  async function deleteTodo(todoToDelete) {
+    try {
+      await apiRequest(
+        `http://localhost:3030/tasks/${todoToDelete._id}`,
+        httpMethods.delete
+      );
+      const updatedTodos = todos.filter(todo => {
+        return todoToDelete._id !== todo._id;
+      });
+      setTodos(updatedTodos);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -127,7 +130,7 @@ function App() {
                   isChecked={isChecked}
                   checkBoxItem={todo}
                 />
-             <DeleteBtn itemToDelete={todo} onClick={deleteTodo}/>
+                <DeleteBtn itemToDelete={todo} onClick={deleteTodo} />
               </li>
             );
           })}
