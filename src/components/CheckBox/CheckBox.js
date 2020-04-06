@@ -10,7 +10,7 @@ import uncheckedBox from "images/unchecked-checkbox-icon.png";
  *     name: string
  * }
  */
-export const CheckBox = ({checkBoxItem, isChecked, onChange}) => {
+export const CheckBox = ({checkBoxItem, isChecked, onChange: handleChange}) => {
   return (
     <div>
       <input
@@ -19,7 +19,7 @@ export const CheckBox = ({checkBoxItem, isChecked, onChange}) => {
         id={checkBoxItem._id}
         onChange={() => {
             // update(checkboxItem)
-            onChange(checkBoxItem);
+            handleChange(checkBoxItem);
         }}
         checked={isChecked}
       />
@@ -31,7 +31,7 @@ export const CheckBox = ({checkBoxItem, isChecked, onChange}) => {
             isChecked ? "" : styles.uncheckedImage
           }`}
         />
-      </label>
+      </label >
       <span className={isChecked ? styles.checkedTodo : styles.uncheckedTodo}>
         {checkBoxItem.name}
       </span>
