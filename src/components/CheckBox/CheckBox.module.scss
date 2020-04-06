@@ -1,0 +1,24 @@
+
+
+
+.tickBoxImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.uncheckedImage {
+  filter: brightness(0) invert(1);
+}
+.listItemCheckBox {
+  opacity: 0;
+}
+
+.uncheckedTodo {
+  padding-left: 20px;
+}
+
+.checkedTodo {
+
+  text-decoration: line-through;
+  padding-left: 20px;
+}
